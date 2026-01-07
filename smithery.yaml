@@ -1,0 +1,41 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - SHOPSITE_BASE_URL
+      - SHOPSITE_CLIENT_ID
+      - SHOPSITE_CLIENT_SECRET
+      - SHOPSITE_AUTH_CODE
+    properties:
+      SHOPSITE_BASE_URL:
+        type: string
+        description: The base URL of your ShopSite CGI directory (e.g. https://mystore.com/cgi-bin/sc)
+      SHOPSITE_CLIENT_ID:
+        type: string
+        description: ShopSite OAuth Client ID
+      SHOPSITE_CLIENT_SECRET:
+        type: string
+        description: ShopSite OAuth Client Secret
+      SHOPSITE_AUTH_CODE:
+        type: string
+        description: ShopSite OAuth Authorization Code
+      SHOPSITE_USER:
+        type: string
+        description: ShopSite Username (optional)
+      SHOPSITE_PASS:
+        type: string
+        description: ShopSite Password (optional)
+  commandFunction: |-
+    config => ({
+      command: 'npx',
+      args: ['shopsite-mcp'],
+      env: {
+        SHOPSITE_BASE_URL: config.SHOPSITE_BASE_URL,
+        SHOPSITE_CLIENT_ID: config.SHOPSITE_CLIENT_ID,
+        SHOPSITE_CLIENT_SECRET: config.SHOPSITE_CLIENT_SECRET,
+        SHOPSITE_AUTH_CODE: config.SHOPSITE_AUTH_CODE,
+        SHOPSITE_USER: config.SHOPSITE_USER,
+        SHOPSITE_PASS: config.SHOPSITE_PASS
+      }
+    })

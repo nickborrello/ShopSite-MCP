@@ -1,14 +1,20 @@
 {
   "name": "shopsite-mcp",
   "version": "1.0.0",
-  "description": "",
+  "description": "MCP Server for ShopSite E-commerce Platform",
   "main": "index.js",
-  "scripts": {
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickborrello/ShopSite-MCP.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mcp",
+    "shopsite",
+    "ecommerce",
+    "xml-api",
+    "ai-agent"
+  ],
+  "author": "Nick Borrello",
   "license": "ISC",
   "type": "module",
   "bin": {
