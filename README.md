@@ -1,4 +1,4 @@
-# ShopSite MCP Server
+# ShopSite MCP Server (Work In-Progress)
 
 <div align="center">
   <img src="https://www.shopsite.com/img/logo/shopsite-color-260.png" alt="ShopSite Logo" width="200" />
