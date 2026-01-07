@@ -12,8 +12,9 @@ This server allows LLMs to programmatically interact with a ShopSite store to re
 ## Features
 
 - **Orders**: Fetch recent orders with date filtering.
-- **Products**: Retrieve the full product catalog.
+- **Products**: Retrieve the full product catalog (paginated).
 - **Inventory**: Update stock levels for specific SKUs.
+- **Search**: Scrape the Back Office to find products by name/SKU.
 - **Security**: Handles ShopSite's custom OAuth 1.0a-style HMAC-SHA1 signature generation automatically.
 - **Type Safety**: Built with TypeScript and Zod for robust input validation.
 
@@ -22,7 +23,8 @@ This server allows LLMs to programmatically interact with a ShopSite store to re
 | Tool | Description | Inputs |
 | :--- | :--- | :--- |
 | `get_orders` | Retrieve list of recent orders | `days` (optional, default 30) |
-| `get_products` | Retrieve product catalog | (none) |
+| `get_products` | Retrieve product catalog (paginated) | `limit` (default 50), `offset` (default 0) |
+| `search_backoffice_products` | Search products via Admin UI (scraping) | `query` (name or sku string) |
 | `update_inventory` | Update inventory quantity for a SKU | `sku` (string), `quantity` (number) |
 
 ## Prerequisites
@@ -30,6 +32,7 @@ This server allows LLMs to programmatically interact with a ShopSite store to re
 - Node.js v18+ OR Docker
 - A ShopSite store (Pro version recommended for XML API access)
 - ShopSite API Credentials (Client ID, Secret, etc.)
+- ShopSite Admin Credentials (for `search_backoffice_products`)
 
 ## Configuration
 
