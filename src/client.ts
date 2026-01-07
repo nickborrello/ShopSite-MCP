@@ -72,15 +72,18 @@ export class ShopSiteClient {
     return this.makeXmlRequest<Order[]>('db_xml.cgi', params, 'Orders');
   }
 
-  async getProducts(): Promise<Product[]> {
+  async getProducts(limit: number = 50, offset: number = 0): Promise<Product[]> {
     if (!this.token) await this.authenticate();
     
+    // ShopSite's XML API does not support native pagination for products.
+    // We must fetch the full catalog and slice it in memory.
     const params = {
       dbname: 'products',
       version: '12.0',
     };
 
-    return this.makeXmlRequest<Product[]>('db_xml.cgi', params, 'Products');
+    const allProducts = await this.makeXmlRequest<Product[]>('db_xml.cgi', params, 'Products');
+    return allProducts.slice(offset, offset + limit);
   }
 
   async updateInventory(sku: string, quantity: number): Promise<boolean> {

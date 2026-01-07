@@ -59,10 +59,13 @@ server.tool(
 server.tool(
   "get_products",
   "Retrieve product catalog from ShopSite",
-  {},
-  async () => {
+  {
+    limit: z.number().optional().default(50).describe("Maximum number of products to return"),
+    offset: z.number().optional().default(0).describe("Offset for pagination"),
+  },
+  async ({ limit, offset }) => {
     try {
-      const products = await client.getProducts();
+      const products = await client.getProducts(limit, offset);
       return {
         content: [
           {
