@@ -1,5 +1,10 @@
 # ShopSite MCP Server
 
+<div align="center">
+  <img src="https://www.shopsite.com/img/logo/shopsite-color-260.png" alt="ShopSite Logo" width="200" />
+  <br />
+</div>
+
 A Model Context Protocol (MCP) server that connects AI agents to the [ShopSite](https://www.shopsite.com/) e-commerce platform.
 
 This server allows LLMs to programmatically interact with a ShopSite store to retrieve orders, browse products, and update inventory, abstracting away the complexity of ShopSite's legacy XML/CGI interfaces and HMAC authentication.
