@@ -104,4 +104,8 @@ node dist/test/verify_signature.js
 
 ## License
 
-ISC
+This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
+
+### Disclaimer
+
+This project is an unofficial tool and is not affiliated with, endorsed by, or connected to ShopSite, Inc. "ShopSite" is a registered trademark of ShopSite, Inc.
