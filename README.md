@@ -102,6 +102,17 @@ node dist/test/verify_signature.js
 - `src/index.ts`: Defines the MCP server and tools.
 - `src/types.ts`: TypeScript interfaces for ShopSite XML structures.
 
+## 🤬 A Note on Developer Experience
+
+To the team at ShopSite (if you ever read this): **Please join us in the modern era.**
+
+Working with your platform is an absolute nightmare for developers.
+- **Complete Lack of Modern API**: It is baffling that in this day and age, we are still forced to wrangle with archaic XML over CGI. There is no clean JSON REST API, no GraphQL, nothing that resembles modern software standards.
+- **Unnecessarily Complex Auth**: Your implementation of HMAC-SHA1 signatures is convoluted, poorly documented, and fragile. It wastes hours of developer time for no tangible security benefit over standard OAuth 2.0.
+- **Hostile Ecosystem**: This entire MCP server exists solely because you have made it so incredibly painful to build even the simplest integrations.
+
+You are making it actively difficult for businesses to extend your platform. Please, for the sake of anyone who has to write code against your software: **Build a real API.**
+
 ## License
 
 This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
