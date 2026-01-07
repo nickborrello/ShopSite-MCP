@@ -4,6 +4,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import dotenv from "dotenv";
 import { ShopSiteClient } from "./client.js";
+import { ShopSiteAdminClient } from "./adminClient.js";
 
 dotenv.config();
 
@@ -16,6 +17,15 @@ for (const env of requiredEnv) {
 }
 
 const client = new ShopSiteClient({
+  baseUrl: process.env.SHOPSITE_BASE_URL!,
+  clientId: process.env.SHOPSITE_CLIENT_ID!,
+  clientSecret: process.env.SHOPSITE_CLIENT_SECRET!,
+  authCode: process.env.SHOPSITE_AUTH_CODE!,
+  username: process.env.SHOPSITE_USER,
+  password: process.env.SHOPSITE_PASS,
+});
+
+const adminClient = new ShopSiteAdminClient({
   baseUrl: process.env.SHOPSITE_BASE_URL!,
   clientId: process.env.SHOPSITE_CLIENT_ID!,
   clientSecret: process.env.SHOPSITE_CLIENT_SECRET!,
@@ -80,6 +90,33 @@ server.tool(
             content: [{ type: "text", text: `Error fetching products: ${errorMessage}` }],
             isError: true,
         };
+    }
+  }
+);
+
+server.tool(
+  "search_backoffice_products",
+  "Search for products using the official Back Office search (scrapes results). Useful for finding products by name fragment.",
+  {
+    query: z.string().describe("Search term (Name or SKU)"),
+  },
+  async ({ query }) => {
+    try {
+      const results = await adminClient.searchProducts(query);
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(results, null, 2),
+          },
+        ],
+      };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      return {
+        content: [{ type: "text", text: `Error searching back office: ${errorMessage}` }],
+        isError: true,
+      };
     }
   }
 );
