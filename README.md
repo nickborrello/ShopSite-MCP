@@ -22,13 +22,13 @@ This server allows LLMs to programmatically interact with a ShopSite store to re
 
 ## Prerequisites
 
-- Node.js v18+
+- Node.js v18+ OR Docker
 - A ShopSite store (Pro version recommended for XML API access)
 - ShopSite API Credentials (Client ID, Secret, etc.)
 
 ## Configuration
 
-1. Create a `.env` file based on `.env.example`:
+You must provide the following environment variables (via `.env` or Docker env vars):
 
 ```bash
 SHOPSITE_BASE_URL=https://mystore.com/cgi-bin/sc
@@ -45,6 +45,30 @@ To obtain credentials:
 3. Register a new application to get the Client ID and Secret.
 
 ## Installation & Usage
+
+### Option 1: Docker (Recommended)
+
+Run directly with Docker, passing your environment variables:
+
+```bash
+docker run -i --rm \
+  -e SHOPSITE_BASE_URL="https://mystore.com/cgi-bin/sc" \
+  -e SHOPSITE_CLIENT_ID="your_id" \
+  -e SHOPSITE_CLIENT_SECRET="your_secret" \
+  -e SHOPSITE_AUTH_CODE="your_code" \
+  ghcr.io/nickborrello/shopsite-mcp:latest
+```
+
+### Option 2: NPX
+
+Run directly from the registry without cloning:
+
+```bash
+npx shopsite-mcp
+```
+*(Ensure environment variables are set in your shell or .env)*
+
+### Option 3: Manual Installation
 
 1. **Install dependencies**:
    ```bash
