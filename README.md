@@ -102,7 +102,7 @@ node dist/test/verify_signature.js
 - `src/index.ts`: Defines the MCP server and tools.
 - `src/types.ts`: TypeScript interfaces for ShopSite XML structures.
 
-## 🤬 A Note on Developer Experience
+## A Note on Developer Experience
 
 To the team at ShopSite (if you ever read this): **Please join us in the modern era.**
 
